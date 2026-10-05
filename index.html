@@ -251,20 +251,16 @@ function onClick(element) {
 
 <!-- Start of Qontak Webchat Script -->
 <script>
-  // 1. Pasang onload SEBELUM append agar tidak ada race condition
-  // 2. Load qchatInitialize.js dulu, baru app.js di dalam onload-nya
-  var qchatInit = document.createElement('script');
+  const qchatInit = document.createElement('script');
   qchatInit.src = "https://webchat-staging.qontak.net/qchatInitialize.js";
-  qchatInit.onload = function() {
-    qchatInitialize({
-      id: "07f725f9-8804-4a08-9bc6-96d66b0a2427",
-      code: "0ld9OCRg9oOxwhFLoeAKmw"
-    });
-    var qchatWidget = document.createElement('script');
-    qchatWidget.src = "https://webchat-staging.qontak.net/js/app.js";
-    document.head.appendChild(qchatWidget);
-  };
-  document.head.appendChild(qchatInit);
+  const qchatWidget = document.createElement('script');
+  qchatWidget.src = "https://webchat-staging.qontak.net/js/app.js";
+  document.head.prepend(qchatInit);
+  document.head.prepend(qchatWidget);
+  qchatInit.onload = function() { qchatInitialize({
+    id: "f8e397ed-268b-40c1-baad-deeb082b37e6", 
+    code: "2sJWVyXmALikiUhG07vAaQ"  
+  })};
 </script>
 <!-- End of Qontak Webchat Script -->
 
